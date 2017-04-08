@@ -1,10 +1,10 @@
 {
   "name": "fiscal-year",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "fiscal-year",
   "license": "MIT",
   "repository": "",
-  "author": "",
+  "author": "Budi Irawan",
   "keywords": [
     ""
   ],
@@ -23,6 +23,7 @@
     "watch:test": "npm run test -- --watch"
   },
   "dependencies": {
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "@types/chai": "^3.0.0",
