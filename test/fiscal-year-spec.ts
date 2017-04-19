@@ -203,4 +203,44 @@ describe('Fiscal Year', () => {
       });
     });
   });
+
+  describe('#getFiscalQuarter', function() {
+    context('when fiscal year start is 1 JAN', function() {
+      it('returns correct fiscal month', function() {
+        const fiscalYear = FiscalYear(JAN_1);
+
+        expect(fiscalYear.getFiscalQuarter('2017-01-01')).to.equal(1);
+        expect(fiscalYear.getFiscalQuarter('2017-02-01')).to.equal(1);
+        expect(fiscalYear.getFiscalQuarter('2017-03-01')).to.equal(1);
+        expect(fiscalYear.getFiscalQuarter('2017-04-01')).to.equal(2);
+        expect(fiscalYear.getFiscalQuarter('2017-05-01')).to.equal(2);
+        expect(fiscalYear.getFiscalQuarter('2017-06-01')).to.equal(2);
+        expect(fiscalYear.getFiscalQuarter('2017-07-01')).to.equal(3);
+        expect(fiscalYear.getFiscalQuarter('2017-08-01')).to.equal(3);
+        expect(fiscalYear.getFiscalQuarter('2017-09-01')).to.equal(3);
+        expect(fiscalYear.getFiscalQuarter('2017-10-01')).to.equal(4);
+        expect(fiscalYear.getFiscalQuarter('2017-11-01')).to.equal(4);
+        expect(fiscalYear.getFiscalQuarter('2017-12-01')).to.equal(4);
+      });
+    });
+
+    context('when fiscal year start is 1 JUL', function() {
+      it('returns correct fiscal month', function() {
+        const fiscalYear = FiscalYear(JUL_1);
+
+        expect(fiscalYear.getFiscalQuarter('2017-07-01')).to.equal(1);
+        expect(fiscalYear.getFiscalQuarter('2017-08-01')).to.equal(1);
+        expect(fiscalYear.getFiscalQuarter('2017-09-01')).to.equal(1);
+        expect(fiscalYear.getFiscalQuarter('2017-10-01')).to.equal(2);
+        expect(fiscalYear.getFiscalQuarter('2017-11-01')).to.equal(2);
+        expect(fiscalYear.getFiscalQuarter('2017-12-01')).to.equal(2);
+        expect(fiscalYear.getFiscalQuarter('2017-01-01')).to.equal(3);
+        expect(fiscalYear.getFiscalQuarter('2017-02-01')).to.equal(3);
+        expect(fiscalYear.getFiscalQuarter('2017-03-01')).to.equal(3);
+        expect(fiscalYear.getFiscalQuarter('2017-04-01')).to.equal(4);
+        expect(fiscalYear.getFiscalQuarter('2017-05-01')).to.equal(4);
+        expect(fiscalYear.getFiscalQuarter('2017-06-01')).to.equal(4);
+      });
+    });
+  });
 });

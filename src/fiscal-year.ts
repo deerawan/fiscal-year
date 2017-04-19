@@ -37,6 +37,11 @@ const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
     return fiscalMonths.indexOf(inputDateMonth);
   }
 
+  function getFiscalQuarter(inputDate: string): number {
+    const fiscalMonth = getFiscalMonth(inputDate);
+    return Math.floor((fiscalMonth / 3) + 1);
+  }
+
   function getFiscalYear(inputDate: string): number {
     const inputDateYear = moment.utc(inputDate).year();
     if (isCalendarYearStart()) {
@@ -98,6 +103,7 @@ const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
     getFiscalMonths,
     getFiscalYear,
     getFiscalMonth,
+    getFiscalQuarter,
   };
 };
 
