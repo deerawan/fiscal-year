@@ -60,3 +60,5 @@ typings/
 # VS Code
 .vscode
 
+*.d.ts
+*.js

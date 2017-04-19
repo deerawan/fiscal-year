@@ -9,7 +9,7 @@ describe('Fiscal Year', () => {
   const APR_6 = { month: 3, day: 6 };
 
   describe('#getTaxMonths', function() {
-    context('when fiscal year is 1 JAN', () => {
+    context('when fiscal year start is 1 JAN', () => {
       it('returns tax months from JAN - DEC', () => {
         const fiscalYear = FiscalYear(JAN_1);
         expect(fiscalYear.getTaxMonths(2017)).to.eql([
@@ -29,7 +29,7 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year is 1 JUL', () => {
+    context('when fiscal year start is 1 JUL', () => {
       it('returns tax months from JUL 2016 - JUNE 2017', () => {
         const fiscalYear = FiscalYear(JUL_1);
         expect(fiscalYear.getTaxMonths(2017)).to.eql([
@@ -49,23 +49,98 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year is 6 APR', () => {
+    context('when fiscal year start is 6 APR', () => {
       it('returns tax months from APR 2016 - MARCH 2017', () => {
         const fiscalYear = FiscalYear(APR_6);
         expect(fiscalYear.getTaxMonths(2017)).to.eql([
-         '2016-04-06',
-         '2016-05-06',
-         '2016-06-06',
-         '2016-07-06',
-         '2016-08-06',
-         '2016-09-06',
-         '2016-10-06',
-         '2016-11-06',
-         '2016-12-06',
-         '2017-01-06',
-         '2017-02-06',
-         '2017-03-06',
+         '2016-04-01',
+         '2016-05-01',
+         '2016-06-01',
+         '2016-07-01',
+         '2016-08-01',
+         '2016-09-01',
+         '2016-10-01',
+         '2016-11-01',
+         '2016-12-01',
+         '2017-01-01',
+         '2017-02-01',
+         '2017-03-01',
         ]);
+      });
+    });
+  });
+
+  describe('#getFiscalYear', function() {
+    context('when fiscal year start is 1 JAN', function() {
+      let fiscalYear: any;
+
+      before(function() {
+        fiscalYear = FiscalYear(JAN_1);
+      });
+
+      it('returns fiscal year same with the year of input date', function() {
+        expect(fiscalYear.getFiscalYear('2014-01-01')).to.equal(2014);
+        expect(fiscalYear.getFiscalYear('2014-03-03')).to.equal(2014);
+        expect(fiscalYear.getFiscalYear('2014-06-07')).to.equal(2014);
+        expect(fiscalYear.getFiscalYear('2014-06-30')).to.equal(2014);
+
+        expect(fiscalYear.getFiscalYear('2015-01-01')).to.equal(2015);
+        expect(fiscalYear.getFiscalYear('2015-08-20')).to.equal(2015);
+        expect(fiscalYear.getFiscalYear('2015-12-31')).to.equal(2015);
+      });
+    });
+
+    context('when fiscal year start is 1 JUL', function() {
+      let fiscalYear: any;
+
+      before(function() {
+        fiscalYear = FiscalYear(JUL_1);
+      });
+
+      context('for input date before 1 JUL', function() {
+        it('returns fiscal year same with the year of input date', function() {
+          expect(fiscalYear.getFiscalYear('2014-01-01')).to.equal(2014);
+          expect(fiscalYear.getFiscalYear('2014-03-03')).to.equal(2014);
+          expect(fiscalYear.getFiscalYear('2014-06-07')).to.equal(2014);
+          expect(fiscalYear.getFiscalYear('2014-06-30')).to.equal(2014);
+        });
+      });
+
+      context('for input date is or after 1 JUL', function() {
+        it('returns fiscal year as next year from input date year', function() {
+          expect(fiscalYear.getFiscalYear('2014-07-01')).to.equal(2015);
+          expect(fiscalYear.getFiscalYear('2014-07-02')).to.equal(2015);
+          expect(fiscalYear.getFiscalYear('2014-11-28')).to.equal(2015);
+          expect(fiscalYear.getFiscalYear('2015-12-23')).to.equal(2016);
+          expect(fiscalYear.getFiscalYear('2016-07-16')).to.equal(2017);
+        });
+      });
+    });
+
+    context('when fiscal year start is 6 APR', function() {
+      let fiscalYear: any;
+
+      before(function() {
+        fiscalYear = FiscalYear(APR_6);
+      });
+
+      context('for input date before 6 APR', function() {
+        it('returns fiscal year same with the year of input date', function() {
+          expect(fiscalYear.getFiscalYear('2014-01-01')).to.equal(2014);
+          expect(fiscalYear.getFiscalYear('2014-02-01')).to.equal(2014);
+          expect(fiscalYear.getFiscalYear('2014-03-03')).to.equal(2014);
+          expect(fiscalYear.getFiscalYear('2014-04-05')).to.equal(2014);
+        });
+      });
+
+      context('for input date is or after 6 APR', function() {
+        it('returns fiscal year as next year from input date year', function() {
+          expect(fiscalYear.getFiscalYear('2014-04-06')).to.equal(2015);
+          expect(fiscalYear.getFiscalYear('2014-04-07')).to.equal(2015);
+          expect(fiscalYear.getFiscalYear('2014-11-28')).to.equal(2015);
+          expect(fiscalYear.getFiscalYear('2015-12-23')).to.equal(2016);
+          expect(fiscalYear.getFiscalYear('2016-07-16')).to.equal(2017);
+        });
       });
     });
   });
