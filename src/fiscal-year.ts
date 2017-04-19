@@ -20,12 +20,21 @@ const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
       month: fiscalYearStart.month, day: fiscalYearStart.day });
     const ranges = [monthYearFormat(startMonth)];
 
-    for (let i = 0; i < 11; i++) {
+    const REST_OF_MONTHS = 11;
+
+    for (let i = 0; i < REST_OF_MONTHS; i++) {
       const month = startMonth.add(1, 'month');
       ranges.push(monthYearFormat(month));
     }
 
     return ranges;
+  }
+
+  function getFiscalMonth(inputDate: string): number {
+    const inputDateMonth = moment.utc(inputDate).month();
+    const fiscalMonths = getPivotFiscalMonths();
+
+    return fiscalMonths.indexOf(inputDateMonth);
   }
 
   function getFiscalYear(inputDate: string): number {
@@ -56,6 +65,31 @@ const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
       });
   }
 
+  function getPivotFiscalMonths() {
+    const MAX_MONTHS = 12;
+    const pivots = [];
+
+    if (isCalendarYearStart()) {
+      for (let i = 0; i < MAX_MONTHS; i++) {
+        pivots.push(i);
+      }
+
+      return pivots;
+    }
+
+    // if start month is 7, generate 7, 8, 9, 10, 11
+    for (let i = fiscalYearStart.month; i < MAX_MONTHS; i++) {
+      pivots.push(i);
+    }
+
+    // then generate 0, 1, 2, 3, 4, 5, 6
+    for (let i = 0; i < fiscalYearStart.month; i++) {
+      pivots.push(i);
+    }
+
+    return pivots;
+  }
+
   function isCalendarYearStart() {
     return fiscalYearStart.month === JANUARY && fiscalYearStart.day === 1;
   }
@@ -63,6 +97,7 @@ const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
   return {
     getFiscalMonths,
     getFiscalYear,
+    getFiscalMonth,
   };
 };
 

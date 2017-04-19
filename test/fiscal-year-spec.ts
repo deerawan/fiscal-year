@@ -144,4 +144,63 @@ describe('Fiscal Year', () => {
       });
     });
   });
+
+  describe('#getFiscalMonth', function() {
+    context('when fiscal year start is 1 JAN', function() {
+      it('returns correct fiscal month', function() {
+        const fiscalYear = FiscalYear(JAN_1);
+
+        expect(fiscalYear.getFiscalMonth('2017-01-01')).to.equal(0);
+        expect(fiscalYear.getFiscalMonth('2017-02-01')).to.equal(1);
+        expect(fiscalYear.getFiscalMonth('2017-03-01')).to.equal(2);
+        expect(fiscalYear.getFiscalMonth('2017-04-01')).to.equal(3);
+        expect(fiscalYear.getFiscalMonth('2017-05-01')).to.equal(4);
+        expect(fiscalYear.getFiscalMonth('2017-06-01')).to.equal(5);
+        expect(fiscalYear.getFiscalMonth('2017-07-01')).to.equal(6);
+        expect(fiscalYear.getFiscalMonth('2017-08-01')).to.equal(7);
+        expect(fiscalYear.getFiscalMonth('2017-09-01')).to.equal(8);
+        expect(fiscalYear.getFiscalMonth('2017-10-01')).to.equal(9);
+        expect(fiscalYear.getFiscalMonth('2017-11-01')).to.equal(10);
+        expect(fiscalYear.getFiscalMonth('2017-12-01')).to.equal(11);
+      });
+    });
+
+    context('when fiscal year start is 1 JUL', function() {
+      it('returns correct fiscal month', function() {
+        const fiscalYear = FiscalYear(JUL_1);
+
+        expect(fiscalYear.getFiscalMonth('2017-07-01')).to.equal(0);
+        expect(fiscalYear.getFiscalMonth('2017-08-01')).to.equal(1);
+        expect(fiscalYear.getFiscalMonth('2017-09-01')).to.equal(2);
+        expect(fiscalYear.getFiscalMonth('2017-10-01')).to.equal(3);
+        expect(fiscalYear.getFiscalMonth('2017-11-01')).to.equal(4);
+        expect(fiscalYear.getFiscalMonth('2017-12-01')).to.equal(5);
+        expect(fiscalYear.getFiscalMonth('2017-01-01')).to.equal(6);
+        expect(fiscalYear.getFiscalMonth('2017-02-01')).to.equal(7);
+        expect(fiscalYear.getFiscalMonth('2017-03-01')).to.equal(8);
+        expect(fiscalYear.getFiscalMonth('2017-04-01')).to.equal(9);
+        expect(fiscalYear.getFiscalMonth('2017-05-01')).to.equal(10);
+        expect(fiscalYear.getFiscalMonth('2017-06-01')).to.equal(11);
+      });
+    });
+
+    context('when fiscal year start is 6 APR', function() {
+      it('returns correct fiscal month', function() {
+        const fiscalYear = FiscalYear(APR_6);
+
+        expect(fiscalYear.getFiscalMonth('2017-04-01')).to.equal(0);
+        expect(fiscalYear.getFiscalMonth('2017-05-01')).to.equal(1);
+        expect(fiscalYear.getFiscalMonth('2017-06-01')).to.equal(2);
+        expect(fiscalYear.getFiscalMonth('2017-07-01')).to.equal(3);
+        expect(fiscalYear.getFiscalMonth('2017-08-01')).to.equal(4);
+        expect(fiscalYear.getFiscalMonth('2017-09-01')).to.equal(5);
+        expect(fiscalYear.getFiscalMonth('2017-10-01')).to.equal(6);
+        expect(fiscalYear.getFiscalMonth('2017-11-01')).to.equal(7);
+        expect(fiscalYear.getFiscalMonth('2017-12-01')).to.equal(8);
+        expect(fiscalYear.getFiscalMonth('2017-01-01')).to.equal(9);
+        expect(fiscalYear.getFiscalMonth('2017-02-01')).to.equal(10);
+        expect(fiscalYear.getFiscalMonth('2017-03-01')).to.equal(11);
+      });
+    });
+  });
 });
