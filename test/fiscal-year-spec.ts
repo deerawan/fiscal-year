@@ -8,11 +8,11 @@ describe('Fiscal Year', () => {
   const JUL_1 = { month: 6, day: 1 };
   const APR_6 = { month: 3, day: 6 };
 
-  describe('#getTaxMonths', function() {
+  describe('#getFiscalMonths', function() {
     context('when fiscal year start is 1 JAN', () => {
       it('returns tax months from JAN - DEC', () => {
         const fiscalYear = FiscalYear(JAN_1);
-        expect(fiscalYear.getTaxMonths(2017)).to.eql([
+        expect(fiscalYear.getFiscalMonths(2017)).to.eql([
          '2017-01-01',
          '2017-02-01',
          '2017-03-01',
@@ -30,9 +30,9 @@ describe('Fiscal Year', () => {
     });
 
     context('when fiscal year start is 1 JUL', () => {
-      it('returns tax months from JUL 2016 - JUNE 2017', () => {
+      it('returns fiscal months from JUL 2016 - JUNE 2017 for year 2017', () => {
         const fiscalYear = FiscalYear(JUL_1);
-        expect(fiscalYear.getTaxMonths(2017)).to.eql([
+        expect(fiscalYear.getFiscalMonths(2017)).to.eql([
          '2016-07-01',
          '2016-08-01',
          '2016-09-01',
@@ -50,9 +50,9 @@ describe('Fiscal Year', () => {
     });
 
     context('when fiscal year start is 6 APR', () => {
-      it('returns tax months from APR 2016 - MARCH 2017', () => {
+      it('returns fiscal months from APR 2016 - MARCH 2017 for year 2017', () => {
         const fiscalYear = FiscalYear(APR_6);
-        expect(fiscalYear.getTaxMonths(2017)).to.eql([
+        expect(fiscalYear.getFiscalMonths(2017)).to.eql([
          '2016-04-01',
          '2016-05-01',
          '2016-06-01',

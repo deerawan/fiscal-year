@@ -10,8 +10,8 @@ const NON_LEAP_YEAR = 2015;
 const monthYearFormat = (date: moment.Moment) => date.format('YYYY-MM-01');
 
 const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
-  function getTaxMonths(taxYear: number) {
-    let startTaxYear = taxYear;
+  function getFiscalMonths(fiscalYear: number) {
+    let startTaxYear = fiscalYear;
     if (!isCalendarYearStart()) {
       --startTaxYear;
     }
@@ -61,7 +61,7 @@ const FiscalYear = function(fiscalYearStart: FiscalYearStart) {
   }
 
   return {
-    getTaxMonths,
+    getFiscalMonths,
     getFiscalYear,
   };
 };
