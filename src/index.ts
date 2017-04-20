@@ -1,1 +1,1 @@
-export * from "./fiscal-year";
+export * from './fiscal-year';

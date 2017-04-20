@@ -1,5 +1,5 @@
-import FiscalYear from '../src/fiscal-year';
 import * as chai from 'chai';
+import FiscalYear from '../src/fiscal-year';
 
 const expect = chai.expect;
 
@@ -8,7 +8,7 @@ describe('Fiscal Year', () => {
   const JUL_1 = { month: 6, day: 1 };
   const APR_6 = { month: 3, day: 6 };
 
-  describe('#getFiscalMonths', function() {
+  describe('#getFiscalMonths', () => {
     context('when fiscal year start is 1 JAN', () => {
       it('returns tax months from JAN - DEC', () => {
         const fiscalYear = FiscalYear(JAN_1);
@@ -70,15 +70,15 @@ describe('Fiscal Year', () => {
     });
   });
 
-  describe('#getFiscalYear', function() {
-    context('when fiscal year start is 1 JAN', function() {
+  describe('#getFiscalYear', () => {
+    context('when fiscal year start is 1 JAN', () => {
       let fiscalYear: any;
 
-      before(function() {
+      before(() => {
         fiscalYear = FiscalYear(JAN_1);
       });
 
-      it('returns fiscal year same with the year of input date', function() {
+      it('returns fiscal year same with the year of input date', () => {
         expect(fiscalYear.getFiscalYear('2014-01-01')).to.equal(2014);
         expect(fiscalYear.getFiscalYear('2014-03-03')).to.equal(2014);
         expect(fiscalYear.getFiscalYear('2014-06-07')).to.equal(2014);
@@ -90,15 +90,15 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year start is 1 JUL', function() {
+    context('when fiscal year start is 1 JUL', () => {
       let fiscalYear: any;
 
-      before(function() {
+      before(() => {
         fiscalYear = FiscalYear(JUL_1);
       });
 
-      context('for input date before 1 JUL', function() {
-        it('returns fiscal year same with the year of input date', function() {
+      context('for input date before 1 JUL', () => {
+        it('returns fiscal year same with the year of input date', () => {
           expect(fiscalYear.getFiscalYear('2014-01-01')).to.equal(2014);
           expect(fiscalYear.getFiscalYear('2014-03-03')).to.equal(2014);
           expect(fiscalYear.getFiscalYear('2014-06-07')).to.equal(2014);
@@ -106,8 +106,8 @@ describe('Fiscal Year', () => {
         });
       });
 
-      context('for input date is or after 1 JUL', function() {
-        it('returns fiscal year as next year from input date year', function() {
+      context('for input date is or after 1 JUL', () => {
+        it('returns fiscal year as next year from input date year', () => {
           expect(fiscalYear.getFiscalYear('2014-07-01')).to.equal(2015);
           expect(fiscalYear.getFiscalYear('2014-07-02')).to.equal(2015);
           expect(fiscalYear.getFiscalYear('2014-11-28')).to.equal(2015);
@@ -117,15 +117,15 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year start is 6 APR', function() {
+    context('when fiscal year start is 6 APR', () => {
       let fiscalYear: any;
 
-      before(function() {
+      before(() => {
         fiscalYear = FiscalYear(APR_6);
       });
 
-      context('for input date before 6 APR', function() {
-        it('returns fiscal year same with the year of input date', function() {
+      context('for input date before 6 APR', () => {
+        it('returns fiscal year same with the year of input date', () => {
           expect(fiscalYear.getFiscalYear('2014-01-01')).to.equal(2014);
           expect(fiscalYear.getFiscalYear('2014-02-01')).to.equal(2014);
           expect(fiscalYear.getFiscalYear('2014-03-03')).to.equal(2014);
@@ -133,8 +133,8 @@ describe('Fiscal Year', () => {
         });
       });
 
-      context('for input date is or after 6 APR', function() {
-        it('returns fiscal year as next year from input date year', function() {
+      context('for input date is or after 6 APR', () => {
+        it('returns fiscal year as next year from input date year', () => {
           expect(fiscalYear.getFiscalYear('2014-04-06')).to.equal(2015);
           expect(fiscalYear.getFiscalYear('2014-04-07')).to.equal(2015);
           expect(fiscalYear.getFiscalYear('2014-11-28')).to.equal(2015);
@@ -145,9 +145,9 @@ describe('Fiscal Year', () => {
     });
   });
 
-  describe('#getFiscalMonth', function() {
-    context('when fiscal year start is 1 JAN', function() {
-      it('returns correct fiscal month', function() {
+  describe('#getFiscalMonth', () => {
+    context('when fiscal year start is 1 JAN', () => {
+      it('returns correct fiscal month', () => {
         const fiscalYear = FiscalYear(JAN_1);
 
         expect(fiscalYear.getFiscalMonth('2017-01-01')).to.equal(0);
@@ -165,8 +165,8 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year start is 1 JUL', function() {
-      it('returns correct fiscal month', function() {
+    context('when fiscal year start is 1 JUL', () => {
+      it('returns correct fiscal month', () => {
         const fiscalYear = FiscalYear(JUL_1);
 
         expect(fiscalYear.getFiscalMonth('2017-07-01')).to.equal(0);
@@ -184,8 +184,8 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year start is 6 APR', function() {
-      it('returns correct fiscal month', function() {
+    context('when fiscal year start is 6 APR', () => {
+      it('returns correct fiscal month', () => {
         const fiscalYear = FiscalYear(APR_6);
 
         expect(fiscalYear.getFiscalMonth('2017-04-01')).to.equal(0);
@@ -204,9 +204,9 @@ describe('Fiscal Year', () => {
     });
   });
 
-  describe('#getFiscalQuarter', function() {
-    context('when fiscal year start is 1 JAN', function() {
-      it('returns correct fiscal month', function() {
+  describe('#getFiscalQuarter', () => {
+    context('when fiscal year start is 1 JAN', () => {
+      it('returns correct fiscal month', () => {
         const fiscalYear = FiscalYear(JAN_1);
 
         expect(fiscalYear.getFiscalQuarter('2017-01-01')).to.equal(1);
@@ -224,8 +224,8 @@ describe('Fiscal Year', () => {
       });
     });
 
-    context('when fiscal year start is 1 JUL', function() {
-      it('returns correct fiscal month', function() {
+    context('when fiscal year start is 1 JUL', () => {
+      it('returns correct fiscal month', () => {
         const fiscalYear = FiscalYear(JUL_1);
 
         expect(fiscalYear.getFiscalQuarter('2017-07-01')).to.equal(1);
