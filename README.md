@@ -1,4 +1,6 @@
 # Fiscal Year 📉
+[![Build Status](https://travis-ci.org/deerawan/fiscal-year.svg?branch=master)](https://travis-ci.org/deerawan/fiscal-year)
+
 Library to deal with fiscal year.
 Features:
 - get fiscal year
