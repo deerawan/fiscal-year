@@ -1,12 +1,13 @@
 {
   "name": "fiscal-year",
-  "version": "0.0.1",
-  "description": "fiscal-year",
+  "version": "1.0.0",
+  "description": "Library to deal with fiscal year",
   "license": "MIT",
   "repository": "",
   "author": "Budi Irawan",
   "keywords": [
-    ""
+    "fiscal year",
+    "tax"
   ],
   "files": [
     "lib"
